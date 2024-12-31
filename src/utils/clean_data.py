@@ -6,6 +6,10 @@ Code de replication de CSV
 
 
 def retirerColonnes(input_file, output_file, colonnes_a_retirer):
+    
+    Retire les colonnes indésirables pour continuer
+    avec les colonnes souhaitees
+    
     # Lire le fichier d'entrée
     with open(input_file, 'r') as infile:
         reader = csv.DictReader(infile, delimiter=';')  # Préciser le délimiteur (;)
@@ -37,15 +41,33 @@ colonnes_a_retirer = ['Focal Depth', 'Mw Magnitude','Mb Magnitude', 'Mi Magnitud
 retirerColonnes(input_file, output_file, colonnes_a_retirer)
 """
 
+def cleanRows():
+    """
+    Args : aucun
+    Remplacement des valeurs non numériques dans les différentes colonnes
+
+    """
+    monCsv = '../../data/raw/earthquake-data.csv'
+    data = pd.read_csv(monCsv, delimiter=';')
+    for column in data.columns:
+        if data[column].dtype == "float64" or data[column].dtype == "int64":
+            data[column].fillna(0, inplace=True)
+
+
+    data['Flag Tsunami'] = data['Flag Tsunami'].apply(lambda x: 'Tsunami' if x == 'Tsunami' else 'No')    # Si la colonne est en NaN on remplace par "No" 
+
+    data['Earthquake : Deaths Description'].fillna("No deaths reported", inplace=True)   # Remplace les NaN par une information
+
+    for column in data.columns:
+        print(data[column])
+
 
 def initialiseData():
     monCsv = '../../data/raw/earthquake-data.csv'
-    data = pd.read_csv(monCsv)
-    print(data.head().isnull().sum())
+    data = pd.read_csv(monCsv, delimiter=';')
+    print(data.head())
     with open(monCsv, 'r') as eq:
         c = csv.DictReader(eq, delimiter=';')
-        for row in c :
-            print(row)
         return c
 initialiseData()
-
+cleanRows()
