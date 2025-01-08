@@ -4,7 +4,8 @@ footer_style = {
     'border': '2px solid #ccc',     # Add a border at the top
     'text-align': 'center',         # Center-align the text
     'padding': '10px',              # Add some padding for spacing
-    'background-color': '#f2f2f2'   # Set a background color
+    'background-color': '#302f2f',   # Set a background color
+    'color':'white'
 }
 
 def get_footer(): 

@@ -4,7 +4,7 @@ import plotly.express as px
 from dash import html, dcc  # Utilisation des imports modernes
 
 # Chemin vers le fichier CSV
-csv_path = "../../data/cleaned/earthquake-cleaned.csv"
+csv_path = "./data/cleaned/earthquake-cleaned.csv"
 df = pd.read_csv(
     csv_path,
     delimiter=";",  # Spécifier explicitement le séparateur

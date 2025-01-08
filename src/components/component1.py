@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 import plotly.express as px
 
-csv_path = "../../data/cleaned/earthquake-cleaned.csv"
+csv_path = "./data/cleaned/earthquake-cleaned.csv"
 df = pd.read_csv(
     csv_path,
     delimiter=";",  # Définir explicitement le séparateur (si ce n'est pas la virgule `,`)
@@ -42,7 +42,7 @@ def render_histogram_seism_by_year():
         x="Year",
         title="Nombre de séismes par années",
         labels={"Year": "Année", "count": "Nombre de séismes"},
-        template="seaborn"
+        template="plotly"
     )
     
     return html.Div(
