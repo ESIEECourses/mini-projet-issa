@@ -4,9 +4,10 @@ import dash_bootstrap_components as dbc
 def makeNavBar():
     navbar = dbc.NavbarSimple(
         children=[
-            dbc.NavItem(dbc.NavLink("Home", href="#")),
-            dbc.NavItem(dbc.NavLink("Histogram", href="#")),
-            dbc.NavItem(dbc.NavLink("Map", href="#")),
+            dbc.NavItem(dbc.NavLink("Accueil", href="/")),
+            dbc.NavItem(dbc.NavLink("Histogrammes", href="/histograms")),
+            dbc.NavItem(dbc.NavLink("Cartes", href="#")),
+            dbc.NavItem(dbc.NavLink("À Propos", href="/about")),
         ],
         brand_href="./header",
         color="black",
