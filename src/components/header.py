@@ -1,11 +1,11 @@
-from dash import Dash, html
+from dash import html
 import dash_bootstrap_components as dbc
 
 
 def create_header():
     return html.Div(
         children=[
-            html.A(html.H3("ESIEEVIZ",style={"font-size":"60px"}),style={"textAlign" : "center", "font-style":"bold","color":"white", "font-family":"Fantasy", "justify-content":"center"})
+            html.A(html.H3("ESIEEVIZ",style={"font-size":"60px"}),href='/home' ,style={"textAlign" : "center", "font-style":"bold","color":"white", "font-family":"Fantasy", "justify-content":"center", "text-decoration":"none"})
         ],
-        style={"background-color":"#1c03ff", "height":"95px"}
+        style={"height":"100px", "background": "rgb(92,9,121)","background": "linear-gradient(180deg, rgba(92,9,121,0.5816701680672269) 15%, rgba(0,191,255,0.5452556022408963) 100%)"}
     )

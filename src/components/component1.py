@@ -113,3 +113,18 @@ def histogram_death_magnitude():
             dcc.Graph(id="histogram", figure=fig, config={"responsive": True})
         ]
     )
+     
+def scatter_magnitud_seism():
+    
+    filtered_df = df[(df['Earthquake : Deaths'] > 50000) & (df['Ms Magnitude'] > 5)]    
+    
+    fig = px.pie(filtered_df, values='Earthquake : Deaths', names='Country',
+                 title='Répartition des décès par pays (pour les séismes de magnitude > 5 et plus de 50 000 décès)',
+                 template='gridon',
+                 hole=0.15)
+    
+    return html.Div(
+        [
+            dcc.Graph(id="pie-chart", figure=fig),
+        ]    
+    )
