@@ -2,6 +2,12 @@ import dash_bootstrap_components as dbc
 
 
 def makeNavBar():
+    """
+        Création de la navbar du site
+    
+    Returns : 
+        dbc.NavbarSimple : composant navbar de dash bootstrap components
+    """
     navbar = dbc.NavbarSimple(
         children=[
             dbc.NavItem(dbc.NavLink("Accueil", href="/")),

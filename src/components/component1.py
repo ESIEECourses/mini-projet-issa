@@ -34,6 +34,11 @@ def render_histogram_seism_combine():
     )
 
 def histogram_death_magnitude():
+    """
+        Histogramme concernant la magnitude des séismes en fonction des Tsunamis
+    Returns :
+        Histogram
+    """
     fig = px.histogram(
         df,
         x="Ms Magnitude",
@@ -57,6 +62,11 @@ def histogram_death_magnitude():
     )
      
 def scatter_magnitud_seism():
+    """
+        Diagramme sur le nombre de tsunamis/séismes en fonction des pays
+    Returns :
+        Histogram : Diagramme du nombre de tsunamis/séismes en fonction des pays
+    """
     
     filtered_df = df[(df['Earthquake : Deaths'] > 25000) & (df['Ms Magnitude'] > 5)]    
     
@@ -79,6 +89,12 @@ def scatter_magnitud_seism():
     )
     
 def scatter_seism():
+    """
+        Nuage de points des Décès par pays en fonction des différentes magnitudes
+    
+    Returns:
+        px.Scatter : Nuage de points
+    """
     filtered_df = df[(df['Earthquake : Deaths'] > 50000)]
     
     fig = px.scatter(filtered_df, x="Ms Magnitude", y="Earthquake : Deaths", color="Country",
