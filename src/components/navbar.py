@@ -6,8 +6,7 @@ def makeNavBar():
         children=[
             dbc.NavItem(dbc.NavLink("Accueil", href="/")),
             dbc.NavItem(dbc.NavLink("Histogrammes", href="/histograms")),
-            dbc.NavItem(dbc.NavLink("Cartes", href="#")),
-            dbc.NavItem(dbc.NavLink("À Propos", href="/about")),
+            dbc.NavItem(dbc.NavLink("Cartes", href="/maps")),
         ],
         brand_href="./header",
         color="black",

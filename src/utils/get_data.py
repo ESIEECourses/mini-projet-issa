@@ -2,7 +2,8 @@ import requests
 
 def get_csv():
     """
-    Telechargement du jeu de données via un lien
+    Telechargement du jeu de données via un lien et stockage du jeu de données
+    dans le dossier data/raw.
 
     Args :
         Aucun
@@ -12,7 +13,8 @@ def get_csv():
     file_path = "./data/raw/earthquake.csv"                                                 # Chemin relatif pour déposer le jeu de données
     
     response = requests.get(link)
+    
     with open(file_path, "wb") as file :
         file.write(response.content)
-    print("Telechargement terminé")
+    
 

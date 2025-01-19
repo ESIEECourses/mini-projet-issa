@@ -6,52 +6,10 @@ import plotly.express as px
 csv_path = "./data/cleaned/earthquake-cleaned.csv"
 df = pd.read_csv(
     csv_path,
-    delimiter=";",  # Définir explicitement le séparateur (si ce n'est pas la virgule `,`)
-    on_bad_lines="skip",  # Pour pandas >= 1.3.0
+    delimiter=";",
+    on_bad_lines="skip",
     engine="python"
 )
-
-def render_histogram_seism_by_country():
-
-    if df.empty:
-        return html.Div("Aucune donnée disponible pour afficher l'histogramme.", style={"color": "red"})
-
-    fig = px.histogram(
-        df,
-        x="Country",
-        title="Nombre de séismes par pays",
-        labels={"Country": "Pays", "count": "Nombre de séismes"},
-        template="gridon"
-    )
-    fig.update_layout(
-        yaxis=dict(
-            dtick=50  # Pas de 100 pour l'axe des y
-        ),
-        height=600,  # Hauteur de la figure
-    )
-    return html.Div(
-        [
-            html.H3("Histogramme des Séismes par pays", style={"textAlign": "center", "color":"white"}),
-            dcc.Graph(id="histogram", figure=fig, config={"responsive": True})
-        ],
-        style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}
-    )
-
-def render_histogram_seism_by_year():
-    fig = px.histogram(
-        df,
-        x="Year",
-        title="Nombre de séismes par années",
-        labels={"Year": "Année", "count": "Nombre de séismes"},
-        template="plotly"
-    )
-    
-    return html.Div(
-        [
-            html.H3("Histogramme des seismes par année",style={"textAlign": "center", "color":"white", "font-style":"italic"}),
-            dcc.Graph(id="histogram", figure=fig, config={"responsive": True})
-        ]
-    )
 
 def render_histogram_seism_combine():
     """
@@ -75,28 +33,6 @@ def render_histogram_seism_combine():
         style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}
     )
 
-def histogram_magnitude_bycountry():
-    fig = px.histogram(
-        df,
-        x="Country",
-        color="Flag Tsunami",
-        title="",
-        labels={"Country": "Pays", "count": "Nombre de séismes"},
-        template="plotly_white"
-    )
-    fig.update_layout(
-        #width=1400,  # Largeur de la figure
-        height=700,  # Hauteur de la figure
-        yaxis_title="Nombre de séismes",
-    )
-
-    return html.Div(
-        [
-            dcc.Graph(id="histogram", figure=fig, config={"responsive": True})
-        ],
-        style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}
-    )
-
 def histogram_death_magnitude():
     fig = px.histogram(
         df,
@@ -108,8 +44,7 @@ def histogram_death_magnitude():
         template="plotly_white"
     )
     fig.update_layout(
-        #width=1400,  # Largeur de la figure
-        height=600,  # Hauteur de la figure
+        height=600,
         xaxis_title="Magnitudes",
         yaxis_title="Cumul des décès",
     )
@@ -130,8 +65,14 @@ def scatter_magnitud_seism():
                  template='gridon',
                  hole=0.15)
     
+    total_deaths = df["Earthquake : Deaths"].sum()
+    total_deaths = "{:,.0f}".format(total_deaths).replace(",", " ")
+    
     return html.Div(
         [
+            html.H4("Nombre de Séismes / Tsunami en fonction des pays",style={"color":"white","text-align":"center"}),
+            html.H5("(Tsunami : oui ou non)", style={"color":"white","text-align":"center"}),
+            html.P(f"Le nombre total de morts dus aux séismes est de : {total_deaths} millions de personnes", style={"text-align":"center"}),
             dcc.Graph(id="pie-chart", figure=fig),
         ],
         style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}    
@@ -143,7 +84,6 @@ def scatter_seism():
     fig = px.scatter(filtered_df, x="Ms Magnitude", y="Earthquake : Deaths", color="Country",
                      title='Magnitude vs Earthquake Deaths',template='seaborn')
     
-    # Retourner le composant Dash
     return html.Div(
         [
             dcc.Graph(id="scatter-plot", figure=fig)

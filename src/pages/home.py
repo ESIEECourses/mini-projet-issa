@@ -1,11 +1,19 @@
 from ..components.navbar import makeNavBar
 from ..components.footer import get_footer
 from ..components.header import create_header
-from ..components.component2 import render_choropleth_map_seism
 from dash import html
 
 
 def init_home():
+
+    """
+    Création et initialisation du layout de la section home
+    
+    Returns:
+    
+        dash.Div : Le Layout de la page Home
+        
+    """
 
     return html.Div(
         children=[
@@ -30,8 +38,6 @@ def init_home():
                 ],
                 style={"textAlign": "center", "color": "white", "height": "370px"},
             ),
-            html.Br(),
-            html.Br(),
             html.Br(),
             html.Br(),
             html.H2(
@@ -81,7 +87,7 @@ def init_home():
                             ),
                             html.Br(),
                             html.Br(),
-                            html.A("Pour les voir cliquez ici", href="/histograms",style={"background-color":"black", "text-decoration":"none",
+                            html.A("Pour les voir cliquez ici", href="/maps",style={"background-color":"black", "text-decoration":"none",
                                 "padding":"15px", "color":"white", "background": "rgb(9,7,21)",
                                 "background": "linear-gradient(90deg, rgba(9,27,121,0.5816701680672269) 15%, rgba(0,106,255,0.5452556022408963) 100%)",
                                 "border-radius":"20px"}),
