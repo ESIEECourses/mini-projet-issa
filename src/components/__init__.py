@@ -1,4 +1,4 @@
-from .component1 import scatter_magnitud_seism,render_histogram_seism_by_country, render_histogram_seism_by_year, render_histogram_seism_combine, histogram_death_magnitude, histogram_magnitude_bycountry
+from .component1 import scatter_seism,scatter_magnitud_seism,render_histogram_seism_by_country, render_histogram_seism_by_year, render_histogram_seism_combine, histogram_death_magnitude, histogram_magnitude_bycountry
 from .component2 import render_choropleth_map_seism
 from .navbar import makeNavBar
 from .footer import get_footer

@@ -13,8 +13,8 @@ def retirerColonnesEtNettoyer():
         colonnes_a_retirer (list): Liste des colonnes à retirer.
     """
 
-    input_file = '../../data/raw/earthquake.csv'
-    output_file = '../../data/cleaned/earthquake-cleaned.csv'
+    input_file = './data/raw/earthquake.csv'
+    output_file = './data/cleaned/earthquake-cleaned.csv'
     colonnes_a_retirer = ['Focal Depth', 'Mw Magnitude','Mb Magnitude', 'Mi Magnitude', 'MFA Magnitude','State', 'Unknown Magnitude', 'Region code', 'Intensity','EQ Primary'
                         ,'Earthquake : Missing','Earthquake : Missing Description','Earthquake : Injuries','Earthquake : Injuries Description','Earthquake : Damage Description',
                         'Earthquakes : Houses destroyed','Earthquakes : Houses destroyed Description','Earthquakes : Houses damaged','Earthquakes : Houses damaged Description',
@@ -37,9 +37,11 @@ def retirerColonnesEtNettoyer():
 
     if 'Earthquake : Deaths Description' in data.columns:
         data['Earthquake : Deaths Description'] = data['Earthquake : Deaths Description'].fillna("No deaths reported")
+        
+    if 'Ms Magnitude' in data.columns:
+        data = data[data['Ms Magnitude'] > 0.0]
 
     data.to_csv(output_file, index=False, sep=';')
-    print("Nettoyage et suppression des colonnes terminés.\n")
 
 # Appel de la fonction
 
