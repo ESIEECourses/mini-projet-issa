@@ -56,9 +56,16 @@ Le code est structuré en 3 dossiers. La classe main permet de lancer la visuali
 
 - Le dossier `components` contient les classes de chaque éléments des différentes pages, dont la barre de navigation, les hauts et bas de page, et les différents composants et représentations de données. Cette partie de code peut également facilement être modifiée afin de modifier, retirer ou rajouter des représentations de données en modifiant les paramètres de celles-ci.
 
+
+```sequence
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
+```
+
 # Rapport d'analyse
 
-
+Les représentations nous montrent que les séismes ont lieu majoritairement l'Asie du sud, l'Europe du sud, l'Afrique du Nord et l'Amérique du sud. La Chine, la Turquie, l'Iran, Haïti, l'Italie et le Japon sont cependant les pays les plus impactés en terme de décès à cause de ces séismes. Les séismes de magnitude 5 à 8 sont les plus fréquents parmi ceux enregistrés, et les tsunamis est souvent déclenché à partir d'une magnitude 5.
 
 # Copyright
 
