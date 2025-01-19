@@ -1,10 +1,12 @@
 from src.pages import init_home, init_about,init_histogram
+from src.utils import retirerColonnesEtNettoyer, get_csv
 
 from dash import Dash, html, dcc, Input, Output
 import dash_bootstrap_components as dbc
 
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
 
 app.layout = html.Div(
     children=[
@@ -13,6 +15,9 @@ app.layout = html.Div(
     ],
     style={"background-color": "#ccc4c4"}
 )
+
+#retirerColonnesEtNettoyer()
+#get_csv()
 
 @app.callback(
     Output('page-content', 'children'),

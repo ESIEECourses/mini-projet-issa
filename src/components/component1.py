@@ -33,7 +33,8 @@ def render_histogram_seism_by_country():
         [
             html.H3("Histogramme des Séismes par pays", style={"textAlign": "center", "color":"white"}),
             dcc.Graph(id="histogram", figure=fig, config={"responsive": True})
-        ]
+        ],
+        style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}
     )
 
 def render_histogram_seism_by_year():
@@ -62,7 +63,7 @@ def render_histogram_seism_combine():
         df,
         x="Ms Magnitude",
         color="Flag Tsunami",
-        title="Nombre de Tsunamis en fonction des magnitudes de séismes",
+        title="",
         labels={"Ms Magnitude": "Magnitude", "count": "Nombre de séismes"},
         template="plotly_white"
     )
@@ -70,7 +71,8 @@ def render_histogram_seism_combine():
         [
             html.H3("Histogramme des tsunamis et magnitude",style={"textAlign": "center", "color":"white"}),
             dcc.Graph(id="histogram", figure=fig, config={"responsive": True})
-        ]
+        ],
+        style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}
     )
 
 def histogram_magnitude_bycountry():
@@ -78,19 +80,21 @@ def histogram_magnitude_bycountry():
         df,
         x="Country",
         color="Flag Tsunami",
-        title="Nombre de Tsunami en fonction des pays",
+        title="",
         labels={"Country": "Pays", "count": "Nombre de séismes"},
         template="plotly_white"
     )
     fig.update_layout(
         #width=1400,  # Largeur de la figure
-        height=800,  # Hauteur de la figure
+        height=700,  # Hauteur de la figure
+        yaxis_title="Nombre de séismes",
     )
 
     return html.Div(
         [
             dcc.Graph(id="histogram", figure=fig, config={"responsive": True})
-        ]
+        ],
+        style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}
     )
 
 def histogram_death_magnitude():
@@ -99,32 +103,50 @@ def histogram_death_magnitude():
         x="Ms Magnitude",
         y="Earthquake : Deaths",
         color="Flag Tsunami",
-        title="Nombre de Décès en fonction de la magnitude",
-        labels={"Magnitude": "magnitude", "count": "Décès"},
+        title="",
+        labels={"Magnitude": "magnitude", "count": "Nombres de séismes"},
         template="plotly_white"
     )
     fig.update_layout(
         #width=1400,  # Largeur de la figure
-        height=800,  # Hauteur de la figure
+        height=600,  # Hauteur de la figure
+        xaxis_title="Magnitudes",
+        yaxis_title="Cumul des décès",
     )
 
     return html.Div(
         [
             dcc.Graph(id="histogram", figure=fig, config={"responsive": True})
-        ]
+        ],
+        style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}
     )
      
 def scatter_magnitud_seism():
     
-    filtered_df = df[(df['Earthquake : Deaths'] > 50000) & (df['Ms Magnitude'] > 5)]    
+    filtered_df = df[(df['Earthquake : Deaths'] > 25000) & (df['Ms Magnitude'] > 5)]    
     
     fig = px.pie(filtered_df, values='Earthquake : Deaths', names='Country',
-                 title='Répartition des décès par pays (pour les séismes de magnitude > 5 et plus de 50 000 décès)',
+                 title='',
                  template='gridon',
                  hole=0.15)
     
     return html.Div(
         [
             dcc.Graph(id="pie-chart", figure=fig),
-        ]    
+        ],
+        style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}    
+    )
+    
+def scatter_seism():
+    filtered_df = df[(df['Earthquake : Deaths'] > 50000)]
+    
+    fig = px.scatter(filtered_df, x="Ms Magnitude", y="Earthquake : Deaths", color="Country",
+                     title='Magnitude vs Earthquake Deaths',template='seaborn')
+    
+    # Retourner le composant Dash
+    return html.Div(
+        [
+            dcc.Graph(id="scatter-plot", figure=fig)
+        ],
+        style={'border-radius': '15px', 'background-color': 'white', 'padding': '10px'}    
     )
