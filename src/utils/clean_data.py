@@ -5,12 +5,11 @@ def retirerColonnesEtNettoyer():
 
     """
     Retire les colonnes indésirables et applique un nettoyage spécifiques aux données, 
-    puis écrit les données nettoyées dans un nouveau fichier.
+    puis écrit les données nettoyées dans un nouveau fichier CSV et le stocke 
+    dans le fichier ./data/cleaned.
 
     Args:
-        input_file (str): Chemin du fichier CSV d'entrée.
-        output_file (str): Chemin du fichier CSV de sortie.
-        colonnes_a_retirer (list): Liste des colonnes à retirer.
+        Aucun
     """
 
     input_file = './data/raw/earthquake.csv'
@@ -42,9 +41,3 @@ def retirerColonnesEtNettoyer():
         data = data[data['Ms Magnitude'] > 0.0]
 
     data.to_csv(output_file, index=False, sep=';')
-
-# Appel de la fonction
-
-
-retirerColonnesEtNettoyer()
-

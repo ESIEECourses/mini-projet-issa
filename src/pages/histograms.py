@@ -2,11 +2,8 @@ from ..components.navbar import makeNavBar
 from ..components.footer import get_footer
 from ..components.header import create_header
 from ..components.component1 import (
-    render_histogram_seism_by_country,
-    render_histogram_seism_by_year,
     render_histogram_seism_combine,
     histogram_death_magnitude,
-    histogram_magnitude_bycountry,
     scatter_magnitud_seism,
     scatter_seism,
 )
@@ -14,6 +11,13 @@ from dash import html
 
 
 def init_histogram():
+    """
+    Retourne le layout de la section Histogrammes avec les différents composants.
+        
+    Returns:
+        html.Div : Page histogramme. 
+    
+    """
     return html.Div(
         children=[
             create_header(),
@@ -42,7 +46,7 @@ def init_histogram():
                     "margin": "7em",
                     "border": "2px solid black",
                     "border-radius": "100px",
-                    "background-color": "#800F47",
+                    "background-color": "black",
                     "padding": "100px",
                     "box-shadow": "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
                 },
@@ -80,33 +84,18 @@ def init_histogram():
             ),
             html.Div(
                 children=[
-                    html.H4("Histogramme : Nombre de Séismes / Tsunami en fonction des pays",style={"color":"white","text-align":"center"}),
-                    html.H5("(Tsunami : oui ou non)", style={"color":"white","text-align":"center"}),
-                    html.Br(),                
-                    histogram_magnitude_bycountry()
-                ],
-                style={
-                    "margin": "7em",
-                    "border": "2px solid black",
-                    "border-radius": "100px",
-                    "background-color": "#1027BD",
-                    "padding": "100px",
-                    "box-shadow": "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
-                    
-                },
-            ),
-            html.Div(
-                children=[
                     html.H4("Histogramme : Cumul de Décès en fonction de la magnitude", style={"color":"white","text-align":"center"}),
                     html.H5("(Tsunami : oui ou non)", style={"color":"white","text-align":"center"}),
                     html.Br(),
-                    histogram_death_magnitude()
+                    histogram_death_magnitude(),
+                    html.Br(),
+                    html.H5("NB : Cumul représente ici la somme de tout les décès par pays pour chaque unité de magnitude",style={"color":"white","text-align":"center"}),
                 ],
                 style={
                     "margin": "7em",
                     "border": "2px solid black",
                     "border-radius": "100px",
-                    "background-color": "grey",
+                    "background-color": "#520C6C",
                     "padding": "100px",
                     "box-shadow": "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
 
